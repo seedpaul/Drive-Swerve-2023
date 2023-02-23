@@ -50,15 +50,16 @@ public class AutoPilotLimelight extends SubsystemBase {
   private BooleanTopic isRedAlliance = table.getBooleanTopic("IsRedAlliance");
   private BooleanSubscriber IsRed = isRedAlliance.subscribe(false,PubSubOption.keepDuplicates(false),PubSubOption.pollStorage(6));
   private boolean isRed;
-
+  private SwerveDriveSubsystem swerveDriveSubsystem;
   /** Creates a new autopilot. */
-  private AutoPilotLimelight() {
+  private AutoPilotLimelight(SwerveDriveSubsystem swerveDriveSubsystem) {
      this.isRed = IsRed.get();
+     this.swerveDriveSubsystem = swerveDriveSubsystem;
   }
 
   public static AutoPilotLimelight getInstance() {
     if (m_inst == null) {
-      m_inst = new AutoPilotLimelight();
+     throw new IllegalStateException("AutoPilotLimelight not initialized");
     }
     return m_inst;
   }
