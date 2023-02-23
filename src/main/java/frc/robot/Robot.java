@@ -23,6 +23,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   
   //DO NOT DELETE THE BELOW LINE IT IS LOAD BEARING
+  @SuppressWarnings("unused")
   private final static TalonSRX ImJustHereSoStuffDoesntBreak = new TalonSRX(99);
   
   /**

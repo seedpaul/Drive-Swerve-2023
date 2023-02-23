@@ -5,12 +5,12 @@ import com.pathplanner.lib.PathPlannerTrajectory;
 import com.pathplanner.lib.commands.PPSwerveControllerCommand;
 
 import edu.wpi.first.math.controller.PIDController;
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.wpilibj.Joystick;
@@ -47,7 +47,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     // Creating my odometry object from the kinematics object. Here,
     // our starting pose is 5 meters along the long end of the field and in the
     // center of the field along the short end, facing forward.
-    private SwerveDriveOdometry m_odometry;
+    private SwerveDrivePoseEstimator m_odometry;
 
     private Joystick driveController = new Joystick(Constants.XboxControllerConstants.DRIVER_CONTROLLER_USB_ID);
 
@@ -84,7 +84,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     private SwerveDriveSubsystem() {
         pigeon.setYaw(0);
 
-        m_odometry = new SwerveDriveOdometry(m_kinematics,
+        m_odometry = new SwerveDrivePoseEstimator(m_kinematics,
                 getGyroHeading(),
                 getModulePositions(),
                 new Pose2d(0, 0, new Rotation2d()));
@@ -131,8 +131,8 @@ public class SwerveDriveSubsystem extends SubsystemBase {
             //setDriveRate(1);
         //}
 
-        SmartDashboard.putString("odo", m_odometry.getPoseMeters().toString());
-        SmartDashboard.putString("odo", m_odometry.getPoseMeters().toString());
+        SmartDashboard.putString("odo", m_odometry.getEstimatedPosition().toString());
+        SmartDashboard.putString("odo", m_odometry.getEstimatedPosition().toString());
 
         m_odometry.update(getGyroHeading(), getModulePositions());
     }
@@ -147,7 +147,7 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     }
 
     private Pose2d getPose() {
-        return m_odometry.getPoseMeters();
+        return m_odometry.getEstimatedPosition();
     }
 
     private SwerveModulePosition[] getModulePositions() {
