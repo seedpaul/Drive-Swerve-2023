@@ -7,7 +7,7 @@ package frc.robot.subsystems;
 
 import java.util.Arrays;
 
-import edu.wpi.first.math.geometry.Transform3d;
+
 import edu.wpi.first.math.trajectory.Trajectory;
 import edu.wpi.first.math.trajectory.TrajectoryConfig;
 import edu.wpi.first.math.trajectory.TrajectoryGenerator;
@@ -19,12 +19,11 @@ import edu.wpi.first.networktables.PubSubOption;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Transform2d;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants;
 import frc.robot.LimelightHelpers;
-import frc.robot.LimelightHelpers.LimelightResults;
+
 
 public class AutoPilotLimelight extends SubsystemBase {
 

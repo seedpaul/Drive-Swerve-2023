@@ -23,7 +23,7 @@ import edu.wpi.first.math.util.Units;
 public final class Constants {
 
     public static final String CANBUS_NAME = "CANivore1";
-
+    public static final String LIMELIGHT_NAME ="limelight";
     public static final class ScoringPoses {
 
         private static final Pose2d RED1_Pose2d = new Pose2d(Units.inchesToMeters(656.49), Units.inchesToMeters(20.19),
