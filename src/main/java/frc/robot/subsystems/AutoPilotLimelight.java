@@ -82,6 +82,7 @@ public class AutoPilotLimelight extends SubsystemBase {
       
       if(confidence < 0.2){
         Pose2d currentPosition = LimelightHelpers.getBotPose2d(Constants.LIMELIGHT_NAME);
+        
         if(this.locationSpecified() && this.heightSpecifed()){      
           Pose2d getTargetPosition = getScoringLocation();
   
